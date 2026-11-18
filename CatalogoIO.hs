@@ -1,0 +1,6 @@
+-------------------------------------------------------------------------------
+-- PRACTICA: Gestion de Catalogo de Contenido Digital (FASE 2 - Entrada / Salida)
+-- Num. del equipo registrado en la egela: PF11
+-- Apellidos del primer integrante: Ander Etxegarai Arbelaiz
+-- Apellidos del segundo integrante: Diego Román Pose
+-------------------------------------------------------------------------------
