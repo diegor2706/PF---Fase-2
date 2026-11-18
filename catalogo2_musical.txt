@@ -1,0 +1,12 @@
+Hotel California; Eagles; 391; Rock
+Levitating; Dua Lipa; 203; Pop
+Essence; Wizkid; 248; Afro
+Jolene; Dolly Parton; 161; Country
+Levels; Avicii; 198; Electro
+Butter; BTS; 164; KPop
+La Bicicleta; Shakira; 228; Latina
+Lose Yourself; Eminem; 326; Rap
+Sweet Child O' Mine; Guns N' Roses; 356; Rock
+Physical; Dua Lipa; 193; Pop
+Wake Me Up; Avicii; 247; Electro
+Thunderstruck; AC/DC; 292; Rock
