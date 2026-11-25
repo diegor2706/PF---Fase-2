@@ -1,0 +1,4 @@
+Cancion Valida; Artista; 200; Pop
+Linea Con Duracion Mala; Artista; doscientos; Rock
+Linea Con Genero Inexistente; Artista; 180; Reggaeton
+Linea Incompleta; Solo Dos Campos
