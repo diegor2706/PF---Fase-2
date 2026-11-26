@@ -91,24 +91,46 @@ mainCatalogo: Función principal que:
 -}
 mainCatalogo :: IO ()
 mainCatalogo = do
-  putStrLn "Introduce el nombre del fichero de catalogo (ej. catalogo_musical.txt):"
+  putStrLn "Introduce el nombre del fichero de catálogo (ej. catalogo_musical.txt):"
   fichero <- getLine
   catalogo <- cargarCatalogoDesdeFichero (trim fichero)
+  menu catalogo
 
-  putStrLn "\n>>> 1. CATALOGO COMPLETO CARGADO:"
-  imprimirCatalogoConsola catalogo
+menu :: [Cancion] -> IO()
+menu catalogo = do
+  putStrLn "\n === MENU ==="
+  putStrLn "1. Ver catálogo completo"
+  putStrLn "2. Filtrar por género"
+  putStrLn "3. Selección de canciones cortas"
+  putStrLn "4. Catálogo ordenado por duración"
+  putStrLn "0. Salir"
+  opcion <- getLine
+  case trim opcion of
+    "1" -> do
+      imprimirCatalogoConsola catalogo
+      menu catalogo
+    "2" -> do
+      putStrLn "Introduce un género (Rock, Pop, Afro, Country, Electro, KPop, Latina, Rap):"
+      entrada <- getLine
+      case readMaybe (trim entrada) :: Maybe GeneroC of
+        Just g -> imprimirCatalogoConsola (contenidoXGeneroMusical g catalogo)
+        Nothing -> putStrLn "El género introducido no es válido"
+      menu catalogo
+    "3" -> do
+      putStrLn "Introduce el número de canciones que quieres mostrar(número entero):"
+      nStr <- getLine
+      putStrLn "Introduce la duración máxima de las canciones(número entero):"
+      dStr <- getLine
+      case (readMaybe (trim nStr), readMaybe (trim dStr)) of
+        (Just n, Just d) -> imprimirCatalogoConsola (miSeleccionDeCancionesCortas n d catalogo)
+        _ -> putStrLn "Los valores introducidos no son válidos"
+      menu catalogo
+    "4" -> do
+      imprimirCatalogoConsola (qsortBy getDuracionS catalogo)
+      menu catalogo
+    "0" -> do
+      putStrLn "Hasta luego."
 
-  putStrLn ">>> 2. FILTRADO POR GENERO (Rock):"
-  let cancionesRock = contenidoXGeneroMusical Rock catalogo
-  imprimirCatalogoConsola cancionesRock
-
-  putStrLn ">>> 3. SELECCION DE CANCIONES CORTAS (max. 3 canciones de <= 220s):"
-  let cortas = miSeleccionDeCancionesCortas 3 220 catalogo
-  imprimirCatalogoConsola cortas
-
-  putStrLn ">>> 4. CATALOGO ORDENADO POR DURACION (de menor a mayor):"
-  let ordenadas = qsortBy getDuracionS catalogo
-  imprimirCatalogoConsola ordenadas
 
 -- Definición de main para coincidir con la lista de exportación del módulo
 main :: IO ()
